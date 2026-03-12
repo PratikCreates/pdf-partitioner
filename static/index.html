@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Partitioner | Ultra Fast Splitter</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <h1>PDF Partitioner</h1>
+            <p>Divide your documents with precision and speed.</p>
+        </header>
+
+        <main>
+            <div id="drop-zone" class="glass-panel">
+                <div class="upload-icon">📄</div>
+                <p>Drag & Drop your PDF here or <span class="highlight">Click to Upload</span></p>
+                <input type="file" id="file-input" accept="application/pdf" hidden>
+            </div>
+
+            <div id="file-info" class="file-info hidden">
+                <span class="file-name">filename.pdf</span>
+                <span class="page-count">0 pages</span>
+            </div>
+
+            <div id="controls" class="controls glass-panel hidden">
+                <h3>Define Partitions</h3>
+                <p class="subtitle">Example: 1-5, 6-10, 11- (last one defaults to end)</p>
+                <div class="input-group">
+                    <input type="text" id="partitions-input" placeholder="e.g., 1-5, 6-10">
+                    <button id="split-btn" class="primary-btn">Split & ZIP</button>
+                </div>
+            </div>
+
+            <div id="status" class="status hidden">
+                <div class="loader"></div>
+                <p>Processing your PDF...</p>
+            </div>
+
+            <div id="download-panel" class="download-panel hidden">
+                <div class="success-icon">Ready!</div>
+                <a id="download-link" href="#" class="download-btn">Download ZIP Archive</a>
+                <button id="reset-btn" class="secondary-btn">New Split</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Ultrafast • Private • Secure</p>
+        </footer>
+    </div>
+    <script src="static/script.js"></script>
+</body>
+</html>
