@@ -3,54 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Partitioner | Ultra Fast Splitter</title>
+    <title>PDF Partitioner</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
     <link rel="stylesheet" href="static/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-glow"></div>
-    <div class="container">
-        <header>
-            <h1>PDF Partitioner</h1>
-            <p>Divide your documents with precision and speed.</p>
-        </header>
+    <div class="app">
+        <h1>PDF Partitioner</h1>
+        <p class="description">
+            Architectural tool for partitioning PDF documents. 
+            Processing executes locally for absolute document security.
+        </p>
+        
+        <div id="upload-section">
+            <span class="section-label">01 // SOURCE</span>
+            <p>Select PDF document to begin</p>
+            <input type="file" id="file-input" accept="application/pdf" style="opacity: 0; position: absolute; width: 100%; height: 100%; top: 0; left: 0; cursor: pointer;">
+        </div>
 
-        <main>
-            <div id="drop-zone" class="glass-panel">
-                <div class="upload-icon">📄</div>
-                <p>Drag & Drop your PDF here or <span class="highlight">Click to Upload</span></p>
-                <input type="file" id="file-input" accept="application/pdf" hidden>
-            </div>
-
-            <div id="file-info" class="file-info hidden">
-                <span class="file-name">filename.pdf</span>
-                <span class="page-count">0 pages</span>
-            </div>
-
-            <div id="controls" class="controls glass-panel hidden">
-                <h3>Define Partitions</h3>
-                <p class="subtitle">Example: 1-5, 6-10, 11- (last one defaults to end)</p>
+        <div id="main-section" class="hidden">
+            <span class="section-label">02 // ACTIVE DOCUMENT</span>
+            <p id="file-display"></p>
+            
+            <span class="section-label">03 // CONFIGURATION</span>
+            <div class="input-row">
                 <div class="input-group">
-                    <input type="text" id="partitions-input" placeholder="e.g., 1-5, 6-10">
-                    <button id="split-btn" class="primary-btn">Split & ZIP</button>
+                    <label>Split every N pages</label>
+                    <input type="number" id="split-size-input" placeholder="e.g. 14" min="1">
+                    <p class="input-hint">Extract chunks of X pages</p>
+                </div>
+                
+                <div class="input-group">
+                    <label>Split into N parts</label>
+                    <input type="number" id="split-count-input" placeholder="e.g. 3" min="1">
+                    <p class="input-hint">Divide into X equal files</p>
                 </div>
             </div>
 
-            <div id="status" class="status hidden">
-                <div class="loader"></div>
-                <p>Processing your PDF...</p>
+            <span class="section-label">04 // CUSTOM RANGES</span>
+            <div class="input-group" style="margin-bottom: 60px;">
+                <label>Manual Override</label>
+                <input type="text" id="partitions-input" placeholder="e.g. 1-14, 15-28, 29-30" autocomplete="off">
+                <p class="input-hint">Define specific page sequences</p>
             </div>
 
-            <div id="download-panel" class="download-panel hidden">
-                <div class="success-icon">Ready!</div>
-                <a id="download-link" href="#" class="download-btn">Download ZIP Archive</a>
-                <button id="reset-btn" class="secondary-btn">New Split</button>
-            </div>
-        </main>
+            <button id="split-btn">Split PDF</button>
+        </div>
 
-        <footer>
-            <p>Ultrafast • Private • Secure</p>
-        </footer>
+        <div id="status" class="hidden">
+            <p>Processing partitions. Please wait...</p>
+        </div>
+
+        <div id="download-section" class="hidden">
+            <span class="section-label">05 // SUCCESS</span>
+            <p>Partitioning complete. Archive is generated.</p>
+            <a id="download-link" href="#" target="_blank">Download ZIP</a>
+            <br><br>
+            <button id="reset-btn" class="link-btn">Partition Another Document</button>
+        </div>
     </div>
     <script src="static/script.js"></script>
 </body>
